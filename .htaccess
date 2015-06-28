@@ -1,4 +1,4 @@
-<Files "thedata.db3">
+<Files "datafile.db3">
 	Require all denied
 </Files>
 <Files "config.php">
