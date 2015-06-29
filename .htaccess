@@ -1,8 +1,0 @@
-<Files "datafile.db3">
-	Require all denied
-</Files>
-<Files "config.php">
-	Require all denied
-</Files>
-php_flag log_errors on
-php_value error_log _errors_php.txt
