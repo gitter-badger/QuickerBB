@@ -29,23 +29,24 @@ $sth->execute();
 foreach($sth->fetchAll(PDO::FETCH_OBJ) as $user){
 	echo "<tr><td>".$user->username."</td>\n";
 	echo '<td><a href="mailto:'.$user->email.'">'.$user->email.'</a></td>'."\n";
-	echo '<td>'.$user->usertype.'</td>'."\n";
 	echo '<td>'.$user->ip.'</td>'."\n";
+	echo '<td>'.$user->usertype.'</td>'."\n";
+	echo '<td>'.strftime($lang['timeformat'],$user->joined).'</td>'."\n";
 	echo '<td>'."\n";
 ?>
-<form style="margin:0px" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <input type="hidden" name="adm_id" value="<?php echo $user->id ?>" />
 <input type="submit" value="Admin"></form>
 <?php
 	echo '</td><td>'."\n";
 ?>
-<form style="margin:0px" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <input type="hidden" name="mem_id" value="<?php echo $user->id ?>" />
 <input type="submit" value="Member"></form>
 <?php
 	echo '</td><td>'."\n";
 ?>
-<form style="margin:0px" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <input type="hidden" name="ban_id" value="<?php echo $user->id ?>" />
 <input type="submit" value="Banned"></form>
 <?php

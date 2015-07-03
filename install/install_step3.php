@@ -20,7 +20,14 @@ HERE;
 file_put_contents('config.php', $lang_style, FILE_APPEND);
 
 if(isset($db_server)){
-$db = 'mysql';	
+$db = 'mysql';
+
+$htaccess = <<<HTCODE
+php_value error_reporting 32767
+php_flag display_errors on
+HTCODE;
+file_put_contents('.htaccess',$htaccess);
+
 $handle = <<<BEGIN
 \$dbh = new PDO('mysql:host=$db_server;dbname=$db_name','$db_user','$db_pass');
 
@@ -29,13 +36,13 @@ BEGIN;
 
 }else{
 $db = 'sqlite';
+
 $htaccess = <<<HTCODE
 <Files "$db_name">
 	Require all denied
 </Files>
-<Files "config.php">
-	Require all denied
-</Files>
+php_value error_reporting 32767
+php_flag display_errors on
 HTCODE;
 file_put_contents('.htaccess',$htaccess);
 

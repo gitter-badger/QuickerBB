@@ -26,20 +26,18 @@ $breadcrumb = '<a href="index.php">Index</a>';
 
 //contents
 ob_start();
-echo '<table>';
 $sth = $dbh->prepare("SELECT * FROM forums ORDER BY display_order");
 $sth->execute();
 foreach($sth->fetchAll(PDO::FETCH_OBJ) as $forum){
-	echo '<tr><td><span class="idxa"><a href="admin_topics.php?id='.$forum->id.'">'.$forum->forum_name.'</a></span></td>';
-	echo '<td>';
+	echo '<div class="idxa"><a href="admin_topics.php?id='.$forum->id.'">'.$forum->forum_name.'</a></div>';
+	echo '<div>';
 ?>
-<form style="margin:0px" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <input type="hidden" name="del_id" value="<?php echo $forum->id ?>" />
 <input type="submit" value="Delete"></form>
 <?php
-	echo '</td></tr>'."\n";
+	echo '</div>'."\n";
 }
-echo '</table>';
 $contents = ob_get_clean();
 
 //write template

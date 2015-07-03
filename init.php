@@ -14,10 +14,10 @@ if(!isset($_SESSION['userid']))
 	&nbsp;&nbsp;&nbsp;<a href="register.php">'.$lang['REGISTER'].'</a>';
 else{
 	$menu = "\n".'<a href="logout.php">'.$lang['LOGOUT'].'</a> '.$_SESSION['username']."&nbsp;&nbsp;&nbsp;\n".
-			'<a href="members.php">'.$lang['MEMBERS'].'</a>'."&nbsp;&nbsp;\n";
+			'<a href="members.php">'.$lang['MEMBERS'].'</a>'."&nbsp;&nbsp;&nbsp;\n";
 	if ($_SESSION['usertype'] == 'admin'){
-		$menu .= '<a href="newforum.php">'.$lang['ADDFORUM'].'</a>&nbsp;&nbsp;'."\n";
-		$menu .= '<a href="displayorder.php">'.$lang['DISPLAYORDER'].'</a>&nbsp;&nbsp;'."\n";
+		$menu .= '<a href="admin_newforum.php">'.$lang['ADDFORUM'].'</a>&nbsp;&nbsp;'."\n";
+		$menu .= '<a href="admin_displayorder.php">'.$lang['DISPLAYORDER'].'</a>&nbsp;&nbsp;'."\n";
 		$menu .= '<a href="admin_forums.php">'.$lang['ADMIN'].'</a>&nbsp;&nbsp;'."\n";
 		$menu .= '<a href="admin_members.php">'.$lang['ADMINMEMBERS'].'</a>'."\n";
 	}
