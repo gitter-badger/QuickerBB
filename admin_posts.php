@@ -24,6 +24,15 @@ $forum = $sth->fetchObject();
 if(isset($_POST['del_id'])){
 	$post_id = $_POST['del_id'];
 	$dbh->exec("DELETE FROM posts WHERE id = ".$post_id);
+	
+	$sql="SELECT id,user_name,posted FROM posts WHERE topic_id=? ORDER BY posted DESC LIMIT 1";
+	$sth = $dbh->prepare($sql);
+	$sth->execute(array($topic->id));
+	$latest = $sth->fetchObject();
+	
+	$sql = "UPDATE topics SET lastpost_id=?, lastposter=?, lastposted=? WHERE id=?";
+	$sth = $dbh->prepare($sql);
+	$sth->execute(array($latest->id,$latest->user_name,$latest->posted,$topic->id));
 }
 
 //breadcrumb
