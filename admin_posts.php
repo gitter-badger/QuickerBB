@@ -39,14 +39,14 @@ $sth->execute(array($topic->firstpost_id));
 $post = $sth->fetchObject();
 	echo '<div class="postbit">';
 	echo '<div class="postleft">';
-	echo $post->user_name.'<br>';
+	echo $post->user_name.'<br />';
 	echo strftime($lang['timeformat'],$post->posted);
 	echo '</div>'."\n";
 	echo '<div class="postright">';
-	echo '<span class="postsubj">'.$post->subject.'</span></br>';
+	echo '<span class="postsubj">'.$post->subject.'</span><br />';
 	echo $post->message;
 	echo '</div>'."\n";
-	echo '<div class="clearer"></div>';
+	echo '<div class="clear"></div>';
 	echo '</div>'."\n";
 
 $sql = "SELECT * FROM posts WHERE (id BETWEEN ? AND ?) AND topic_id=?";
@@ -57,9 +57,9 @@ foreach($sth->fetchAll(PDO::FETCH_OBJ) as $post){
 	++$count;
 	echo '<div class="postbit">';
 	echo '<div class="postleft">';
-	echo $post->user_name.'<br>';
+	echo $post->user_name;
 ?>
-<form style="margin:0px" action="<?php echo $_SERVER['PHP_SELF'].'?id='.$topic_id; ?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$topic_id; ?>" method="post">
 <input type="hidden" name="del_id" value="<?php echo $post->id ?>" />
 <input type="submit" value="Delete"></form>
 <?php
@@ -67,11 +67,10 @@ foreach($sth->fetchAll(PDO::FETCH_OBJ) as $post){
 	echo '<div class="postright">';
 	echo $post->message;
 	echo '</div>'."\n";
-	echo '<div class="clearer"></div>';
+	echo '<div class="clear"></div>';
 	echo '</div>'."\n";
 }
-
-
 $contents = ob_get_clean();
+
 include('finish.php');
 ?>
