@@ -9,6 +9,16 @@ include('lang/lang_'.$language.'.php');
 setlocale(LC_TIME,$lang['locale']);
 
 session_start();
+// If user is logged in but was banned
+if(isset($_SESSION['userid'])){
+	$sql = "SELECT usertype FROM users WHERE id=? LIMIT 1";
+	$sth = $dbh->prepare($sql);
+	$sth->execute(array($_SESSION['userid']));
+	$user = $sth->fetchObject();
+	if($user->usertype == 'banned')
+		$_SESSION = array();
+}
+
 if(!isset($_SESSION['userid']))
 	$menu = '<a href="login.php">'.$lang['LOGIN'].'</a>
 	&nbsp;&nbsp;&nbsp;<a href="register.php">'.$lang['REGISTER'].'</a>';
