@@ -5,15 +5,17 @@ if (isset($_SESSION['userid'])){
 	header('location:index.php');
 	exit();
 }
-$sql = "SELECT usertype FROM users WHERE ip = ? LIMIT 1";
+
+$breadcrumb = '<a href="index.php">'.$lang['HOME'].'</a>&nbsp;=>&nbsp;'.$lang['REGISTER'];
+
+$sql = "SELECT usertype FROM users WHERE ip=? LIMIT 1";
 $sth = $dbh-> prepare($sql);
 $sth->execute(array($_SERVER['REMOTE_ADDR']));
-if($sth->fetchObject() == 'banned'){
+$user = $sth->fetchObject();
+if($user->usertype == 'banned'){
 	$contents = $lang['YOUBANNED'];
 	include('finish.php');
 }
-
-$breadcrumb = '<a href="index.php">'.$lang['HOME'].'</a>&nbsp;=>&nbsp;'.$lang['REGISTER'];
 
 $error = $username = $email = "";
 if(isset($_POST['register'])){

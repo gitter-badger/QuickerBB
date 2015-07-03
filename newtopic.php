@@ -1,7 +1,10 @@
 <?php
 include('init.php');
 
-if (!isset($_SESSION['userid'])) exit('Nej!');
+if (!isset($_SESSION['userid'])){
+	header('location:index.php');
+	exit();
+}
 
 if (isset($_POST['forum_id'])){
 	$subject  = trim($_POST['subject']);
