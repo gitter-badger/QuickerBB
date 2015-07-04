@@ -57,7 +57,7 @@ foreach($sth->fetchAll(PDO::FETCH_OBJ) as $post){
 	echo '</div>'."\n";
 }
 
-if (isset($_SESSION['userid']) && $count<40){
+if(isset($_SESSION['userid']) && $count<40){
 ?>
 	<form action="newpost.php" method="post" accept-charset="UTF-8">
 	<?php echo $lang['REPLY']; ?>:<br />
