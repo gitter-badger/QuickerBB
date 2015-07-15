@@ -12,7 +12,7 @@ $sql = "SELECT usertype FROM users WHERE ip=? LIMIT 1";
 $sth = $dbh-> prepare($sql);
 $sth->execute(array($_SERVER['REMOTE_ADDR']));
 $user = $sth->fetchObject();
-if($user->usertype == 'banned'){
+if($user && $user->usertype == 'banned'){
 	$contents = $lang['YOUBANNED'];
 	include('finish.php');
 }
