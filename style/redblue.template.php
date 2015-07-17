@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>{{TITLE}} - {{SUBTITLE}}</title>
 <style>
-	body            {background:#a80000;font-size:1em;font-family:"Times New Roman",Georgia,Arial}
+	body            {background:#880000;font-size:1em;font-family:"Times New Roman",Georgia,Arial}
 	textarea, input {background:#ffffff;font-size:1em;font-family:"Times New Roman",Georgia,Arial}
 	a:link    {color:#0000FF;} /* unvisited link */
 	a:visited {color:#0000FF;} /* visited link */
