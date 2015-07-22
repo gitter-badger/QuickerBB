@@ -1,6 +1,10 @@
 <?php
 include('init.php');
 
+if(!isset($_GET['id'])){
+	header('location:index.php');
+	exit();
+}
 $forum_id = $_GET['id'];
 $sql = "SELECT forum_name FROM forums WHERE id=? LIMIT 1";
 $sth = $dbh->prepare($sql);
