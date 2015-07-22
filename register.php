@@ -52,10 +52,6 @@ if(isset($_POST['register'])){
 				$sth->execute(array(null,$username,$passhash,'activate',$act_key,$email,$show_email,$ip,$joined));
 
 				// send mail
-				$sql = "SELECT email FROM users WHERE usertype='admin' LIMIT 1";
-				$sth = $dbh->prepare($sql);
-				$sth->execute();
-				$admin = $sth->FetchObject();
 				$host    = 'http://'.$_SERVER['SERVER_NAME'].
 							str_replace('register.php','activation.php',$_SERVER['PHP_SELF']);
 				$to 	 = $email;
@@ -63,8 +59,8 @@ if(isset($_POST['register'])){
 				$message = $lang['ACT_MSG1'].$title.'<br />'.
 						   $lang['ACT_MSG2'].'<br />
 							<a href="'.$host.'?key='.$act_key.'">'.$lang['ACT_MSG3'].'</a>';
-				$headers = "From: hollumgollum@hotmail.com \r\n".
-						   "Reply-To: no-reply@noreplay.com \r\n".
+				$headers = "From: administrator@hotmail.com \r\n".
+						   "Reply-To: no-reply@hotmail.com \r\n".
 						   "MIME-Version: 1.0 \r\n".
 						   "Content-type: text/html; charset=UTF-8 \r\n";
 				mail($to, $subject, $message, $headers);
